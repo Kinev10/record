@@ -7,7 +7,7 @@ class Song(models.Model):
     album = models.ForeignKey("app.Album", verbose_name=_("Album"), on_delete=models.CASCADE, related_name="songs", null=True)
     title = models.CharField(max_length=200,)
     duration = models.FloatField(_("Duration"))
-    writer = models.ManyToManyField("app.Artist", verbose_name=_("Writer"))
+    writers = models.ManyToManyField("app.Artist", verbose_name=_("Writer"))
 
     class Meta:
         verbose_name = _("Song")

@@ -7,6 +7,9 @@ from .models.member import Member
 from .models.song import Song
 
 
+
+
+
 class ArtistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Artist
@@ -18,3 +21,17 @@ class BandSerializer(serializers.ModelSerializer):
         model = Band
         fields = ('id', 'name',)
 
+
+
+class AlbumSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Album
+        fields = ('band', 'title','release_date',)
+
+
+
+class SongSerializer(serializers.ModelSerializer):
+    writers = ArtistSerializer(many=True)
+    class Meta:
+        model = Song
+        fields = ('id','title', 'album', 'duration', 'writers')
