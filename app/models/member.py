@@ -9,7 +9,9 @@ class Member(models.Model):
     join_date = models.DateField(_("Date Joined"), auto_now=False, auto_now_add=False)
     left_date = models.DateField(_("Date Left"), auto_now=False, auto_now_add=False, null=True, blank=True)
     is_active = models.BooleanField(_("Is Active"), default=True)
-
+    
+    class Meta:
+        unique_together = ('band', 'artist',)
 
     ROLE_CHOICES = (
         ('s', 'Lead Singer'),
