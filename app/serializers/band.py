@@ -26,7 +26,7 @@ class BandSerializer(serializers.ModelSerializer):
                 for writer in writers:
                     if "id" in writer.keys():
                         if models.Artist.objects.filter(id=writer["id"]).exists():
-                            w = models.Artist.objects.get(writer["id"])
+                            w = models.Artist.objects.get(id=writer["id"])
                             song.writers.add(w)
                         else:
                             continue
@@ -38,7 +38,7 @@ class BandSerializer(serializers.ModelSerializer):
                 # consider that the artist already exist
                 if "id" in artist.keys():
                     if models.Artist.objects.filter(id=artist["id"]).exists():
-                        a = models.Artist.objects.get(artist["id"])
+                        a = models.Artist.objects.get(id=artist["id"])
                     else:
                         continue
                 else:
