@@ -4,20 +4,17 @@ from django.utils.translation import ugettext_lazy as _
 
 class Member(models.Model):
     """Model representing a band member connection to artist."""
-    band = models.ForeignKey("app.Band", verbose_name=_("Band"), on_delete=models.CASCADE, related_name="members")
-    artist = models.ForeignKey("app.Artist", verbose_name=_("Artist"), on_delete=models.CASCADE, related_name="members")
-    join_date = models.DateField(_("Date Joined"), auto_now=False, auto_now_add=False)
-    left_date = models.DateField(_("Date Left"), auto_now=False, auto_now_add=False, null=True, blank=True)
-    is_active = models.BooleanField(_("Is Active"), default=True)
-    
-
     ROLE_CHOICES = (
         ('s', 'Lead Singer'),
         ('g', 'Lead Guitar'),
         ('b', 'Bass'),
         ('d', 'Drums'),
     )
-
+    band = models.ForeignKey("app.Band", verbose_name=_("Band"), on_delete=models.CASCADE, related_name="members")
+    artist = models.ForeignKey("app.Artist", verbose_name=_("Artist"), on_delete=models.CASCADE, related_name="members")
+    join_date = models.DateField(_("Date Joined"), auto_now=False, auto_now_add=False)
+    left_date = models.DateField(_("Date Left"), auto_now=False, auto_now_add=False, null=True, blank=True)
+    is_active = models.BooleanField(_("Is Active"), default=True)
     role = models.CharField(
         max_length=1,
         choices=ROLE_CHOICES,

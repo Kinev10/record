@@ -8,5 +8,5 @@ class SongSerializer(serializers.ModelSerializer):
     writers = ArtistSerializer(many=True)
     class Meta:
         model = Song
-        fields = ('id','title', 'album', 'duration', 'writers')
+        fields = ('id', 'album', 'title',  'duration', 'writers')
         read_only_fields = ("album",)

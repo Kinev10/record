@@ -8,7 +8,7 @@ class MemberSerializer(serializers.ModelSerializer):
     artist = ArtistSerializer()
     class Meta:
         model = Member
-        fields = ('id','band','artist','join_date','left_date', 'is_active')
+        fields = ('id','band','artist','join_date','left_date', 'role', 'is_active')
         read_only_fields = ("band",)
 
         
