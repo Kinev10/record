@@ -2,13 +2,11 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .serializers.band_serializer import BandSerializer
-
-from .models.band import Band
-
+import app.models as models
+import app.serializers as serializers
 
 class ActiveBandsList(APIView):
     def get(self, request, format=None):
-        active_bands = Band.active.all()
-        serializer = BandSerializer(active_bands, many = True)
+        active_bands = models.Band.active.all()
+        serializer = serializers.BandSerializer(active_bands, many = True)
         return Response(serializer.data)
